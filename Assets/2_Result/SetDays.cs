@@ -8,6 +8,10 @@ public class SetDays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // nullチェック
+        if (PlayerPrefs.GetInt("Days") == 0)
+            return;
+
         // テキストを設定する
         GetComponent<Text>().text = PlayerPrefs.GetInt("Days").ToString() + "日頑張った...";
     }
