@@ -12,8 +12,10 @@ public class MoveLogo : MonoBehaviour
     {
         // 透明にする
         if (logo == null)
+        {
             logo = GetComponent<Text>();
-        logo.color = Color.clear;
+            logo.color = Color.clear;
+        }
     }
 
     // Update is called once per frame
@@ -21,7 +23,10 @@ public class MoveLogo : MonoBehaviour
     {
         // nullチェック
         if (logo == null)
+        {
+            Debug.Log("ロゴ用の変数が未設定です");
             return;
+        }
 
         // 黄色からの差分を徐々に加算する
         if (logo.color != Color.yellow)
@@ -31,7 +36,6 @@ public class MoveLogo : MonoBehaviour
         // 位置を上下させる
         else
         {
-            Debug.Log("通った");
             Vector3 pos = transform.localPosition;
             transform.localPosition = new Vector3(pos.x, pos.y + Mathf.Sin(Time.time) * 0.1f, pos.z);
         }

@@ -25,7 +25,10 @@ public class PlayerComponet : MonoBehaviour
 
         // nullチェック
         if (car.Length == 0)
+        {
+            Debug.Log("車のアニメーション画像が未設定です");
             return;
+        }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = car[0];
@@ -62,7 +65,10 @@ public class PlayerComponet : MonoBehaviour
     {
         // nullチェック
         if (car.Length == 0)
+        {
+            Debug.Log("車のアニメーション画像が未設定です");
             return;
+        }
 
         if(intervalAnimation <= 0)
         {
@@ -71,11 +77,13 @@ public class PlayerComponet : MonoBehaviour
             {
                 if(spriteRenderer.sprite == car[i])
                 {
+                    // 最初の画像へ
                     if(i == car.Length - 1)
                     {
                         spriteRenderer.sprite = car[0];
                         break;
                     }
+                    // 次の画像へ
                     else
                     {
                         spriteRenderer.sprite = car[i + 1];
