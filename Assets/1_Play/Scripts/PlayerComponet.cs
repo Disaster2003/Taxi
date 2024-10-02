@@ -1,35 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem; //新Inputシステムの利用に必要
 
 public class PlayerComponet : MonoBehaviour
 {
-    ActionControl AC; //インプットアクションを定義
-    Vector3 InputMove;
-
     private SpriteRenderer spriteRenderer;
     [SerializeField] Sprite[] car;
     private float intervalAnimation;
     
     // Start is called before the first frame update
     void Start()
-    {
-        AC = new ActionControl();   // インプットアクションを取得
-        AC.Player.Move.started += OnMove;
-        AC.Player.Move.performed += OnMove;
-        AC.Player.Move.canceled += OnMove;
-        AC.Enable();                // InputActionを機能させる為に有効化する。
-
-        InputMove = Vector2.zero;
-
+    {        
         // nullチェック
         if (car.Length == 0)
         {
             Debug.Log("車のアニメーション画像が未設定です");
             return;
         }
-
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = car[0];
         intervalAnimation = 0.1f;
@@ -38,24 +26,16 @@ public class PlayerComponet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // nullチェック
-        if (InputMove == Vector3.zero)
+        // 入力チェック
+        Vector2 inputMove = InputManager.GetInstance().GetInputMove();
+        if (inputMove == Vector2.zero)
             return;
 
-        // 入力方向へ移動・回転する
-        transform.position += 5 * InputMove.normalized * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(0, (InputMove.x > 0) ? 180 : 0, 0);
+        // 入力方向へ回転する
+        transform.rotation = Quaternion.Euler(0, (inputMove.x > 0) ? 180 : 0, 0);
 
         // アニメーションを再生する
         PlayAnimation();
-    }
-
-    /// <summary>
-    /// Moveアクションの入力取得
-    /// </summary>
-    private void OnMove(InputAction.CallbackContext context)
-    {
-        InputMove = context.ReadValue<Vector2>();
     }
 
     /// <summary>
