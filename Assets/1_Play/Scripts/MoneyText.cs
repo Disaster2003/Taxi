@@ -20,7 +20,14 @@ public class MoneyText : MonoBehaviour
         }
 
         text = GetComponent<Text>();
-        money = 0;
+        if (PlayerPrefs.GetInt("Money") == 0)
+        {
+            money = 0;
+        }
+        else
+        {
+            money = PlayerPrefs.GetInt("Money");
+        }
         text.text = money.ToString("D5");
     }
 
@@ -40,5 +47,11 @@ public class MoneyText : MonoBehaviour
     {
         money = _money;
         text.text = money.ToString("D5");
+    }
+
+    private void OnDestroy()
+    {
+        // ã‡äzÇê›íËÇ∑ÇÈ
+        PlayerPrefs.SetInt("Money", money);
     }
 }

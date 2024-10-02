@@ -29,19 +29,51 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Escが押された時
+        if (Input.GetKey(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
+        }
+
         switch (state_scene)
         {
             case STATE_SCENE.TITLE:
-                NextScene(STATE_SCENE.PLAY);
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    NextScene(STATE_SCENE.PLAY);
+                }
                 break;
             case STATE_SCENE.PLAY:
-                if(PlayerComponet.gas <= 0)
+                //逆走上限
+                if (DistanceText.distance >= 999)
+                {
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
+                }
+                // 次の日へ
+                if (DistanceText.distance <= 0)
+                {
+
+                }
+                // 結果画面へ
+                else if(PlayerComponet.gas <= 0)
                 {
                     NextScene(STATE_SCENE.RESULT);
                 }
                 break;
             case STATE_SCENE.RESULT:
-                NextScene(STATE_SCENE.TITLE);
+                // タイトルへ
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    NextScene(STATE_SCENE.TITLE);
+                }
                 break;
         }
     }
@@ -51,10 +83,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void NextScene(STATE_SCENE _state_scene)
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if(_state_scene == STATE_SCENE.TITLE)
         {
-            state_scene = _state_scene;
-            SceneManager.LoadSceneAsync((int)state_scene);
+            // 値の初期化
+            PlayerPrefs.SetInt("Days", 0);
+            PlayerPrefs.SetInt("Money", 0);
         }
+
+        state_scene = _state_scene;
+        SceneManager.LoadSceneAsync((int)state_scene);
     }
 }

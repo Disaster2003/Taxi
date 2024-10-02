@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DistanceText : MonoBehaviour
 {
     private Text text;
-    private float distance;
+    public static float distance;
 
     // Start is called before the first frame update
     void Start()
