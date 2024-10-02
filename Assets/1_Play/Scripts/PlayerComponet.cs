@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerComponet : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] Sprite[] car;
     private float intervalAnimation;
+
+    [SerializeField] Image imgMeter;
+    [SerializeField] float gasMax;
+    private float gas;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,8 @@ public class PlayerComponet : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = car[0];
         intervalAnimation = 0.1f;
+
+        gas = gasMax;
     }
 
     // Update is called once per frame
@@ -36,6 +43,11 @@ public class PlayerComponet : MonoBehaviour
 
         // アニメーションを再生する
         PlayAnimation();
+
+        // ガスを減らす
+        Debug.Log(gas);
+        gas -= Time.deltaTime;
+        imgMeter.fillAmount = gas / gasMax;
     }
 
     /// <summary>

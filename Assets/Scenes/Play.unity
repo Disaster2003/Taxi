@@ -781,6 +781,8 @@ MonoBehaviour:
   - {fileID: -1290073412, guid: cc570b0bb276c55448fe30c3704d0e2f, type: 3}
   - {fileID: -1417176460, guid: cc570b0bb276c55448fe30c3704d0e2f, type: 3}
   - {fileID: 87196575, guid: cc570b0bb276c55448fe30c3704d0e2f, type: 3}
+  imgMeter: {fileID: 1133057987}
+  gasMax: 100
 --- !u!1 &1296768141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1014,7 @@ GameObject:
   - component: {fileID: 1891451105}
   - component: {fileID: 1891451107}
   - component: {fileID: 1891451106}
+  - component: {fileID: 1891451108}
   m_Layer: 5
   m_Name: txtMoney
   m_TagString: Untagged
@@ -1081,6 +1084,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891451104}
   m_CullTransparentMesh: 1
+--- !u!114 &1891451108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891451104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc6cd1a02ec8644879de6ab7a32323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1977921338
 GameObject:
   m_ObjectHideFlags: 0

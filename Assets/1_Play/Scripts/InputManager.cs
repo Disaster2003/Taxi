@@ -6,13 +6,14 @@ using UnityEngine.InputSystem; // 新Inputシステムの利用に必要
 public class InputManager : MonoBehaviour
 {
     private static InputManager instance;
+    
     private ActionControl AC; // インプットアクションを定義
     private Vector2 inputMove;
 
     // Start is called before the first frame update
     void Start()
     {
-        // インスタンスを生成
+        // インスタンスを生成する
         if (instance == null)
         {
             instance = this;
@@ -28,7 +29,7 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// インスタンスを取得
+    /// インスタンスを取得する
     /// </summary>
     public static InputManager GetInstance()
     {

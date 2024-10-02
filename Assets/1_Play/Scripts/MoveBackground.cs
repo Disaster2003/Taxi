@@ -21,10 +21,10 @@ public class MoveBackground : MonoBehaviour
         if (inputMove == Vector3.zero)
             return;
 
-        // 背景を左に移動
+        // 背景を左へ移動
         transform.position += 5 * inputMove.normalized * -Time.deltaTime;
 
-        // 画像の同じ部分に戻し、ずっと続いているように錯覚
+        // 画像の同じ部分に戻し、ずっと続いているように錯覚させる
         if (transform.position.x < POSITION_END)
         {
             transform.position = Vector3.zero;
