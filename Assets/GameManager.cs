@@ -35,9 +35,13 @@ public class GameManager : MonoBehaviour
                 NextScene(STATE_SCENE.PLAY);
                 break;
             case STATE_SCENE.PLAY:
+                if(PlayerComponet.gas <= 0)
+                {
+                    NextScene(STATE_SCENE.RESULT);
+                }
                 break;
             case STATE_SCENE.RESULT:
-                NextScene(STATE_SCENE.RESULT);
+                NextScene(STATE_SCENE.TITLE);
                 break;
         }
     }

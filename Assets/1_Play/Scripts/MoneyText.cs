@@ -7,7 +7,7 @@ public class MoneyText : MonoBehaviour
 {
     private static MoneyText instance;
 
-    private Text txtMoney;
+    private Text text;
     private int money;
 
     // Start is called before the first frame update
@@ -19,9 +19,9 @@ public class MoneyText : MonoBehaviour
             instance = this;
         }
 
-        txtMoney = GetComponent<Text>();
+        text = GetComponent<Text>();
         money = 0;
-        txtMoney.text = money.ToString("D5");
+        text.text = money.ToString("D5");
     }
 
     /// <summary>
@@ -39,6 +39,6 @@ public class MoneyText : MonoBehaviour
     public void SetMoneyText(int _money)
     {
         money = _money;
-        txtMoney.text = money.ToString("D5");
+        text.text = money.ToString("D5");
     }
 }

@@ -11,7 +11,7 @@ public class PlayerComponet : MonoBehaviour
 
     [SerializeField] Image imgMeter;
     [SerializeField] float gasMax;
-    private float gas;
+    public static float gas;
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +34,8 @@ public class PlayerComponet : MonoBehaviour
     void Update()
     {
         // 入力チェック
-        Vector2 inputMove = InputManager.GetInstance().GetInputMove();
-        if (inputMove == Vector2.zero)
+        Vector3 inputMove = InputManager.GetInstance().GetInputMove();
+        if (inputMove == Vector3.zero)
             return;
 
         // 入力方向へ回転する
@@ -45,7 +45,6 @@ public class PlayerComponet : MonoBehaviour
         PlayAnimation();
 
         // ガスを減らす
-        Debug.Log(gas);
         gas -= Time.deltaTime;
         imgMeter.fillAmount = gas / gasMax;
     }
