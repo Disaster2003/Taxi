@@ -5,17 +5,25 @@ using UnityEngine.UI;
 
 public class PlayerComponet : MonoBehaviour
 {
+    private static PlayerComponet instance;
+
     private SpriteRenderer spriteRenderer;
     [SerializeField] Sprite[] car;
     private float intervalAnimation;
 
     [SerializeField] Image imgMeter;
-    [SerializeField] float gasMax;
-    public static float gas;
+    [SerializeField] float gasMax = 100;
+    public float gas;
     
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        // Singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         // nullチェック
         if (car.Length == 0)
         {
@@ -36,7 +44,9 @@ public class PlayerComponet : MonoBehaviour
         // 入力チェック
         Vector3 inputMove = InputManager.GetInstance().GetInputMove();
         if (inputMove == Vector3.zero)
+        {
             return;
+        }
 
         // 入力方向へ回転する
         transform.rotation = Quaternion.Euler(0, (inputMove.x > 0) ? 180 : 0, 0);
@@ -48,6 +58,11 @@ public class PlayerComponet : MonoBehaviour
         gas -= Time.deltaTime;
         imgMeter.fillAmount = gas / gasMax;
     }
+
+    /// <summary>
+    /// インスタンスを取得する
+    /// </summary>
+    public static PlayerComponet GetInstance() { return instance; }
 
     /// <summary>
     /// アニメーションを再生する
@@ -86,4 +101,9 @@ public class PlayerComponet : MonoBehaviour
         // 時間経過
         intervalAnimation += -Time.deltaTime;
     }
+
+    /// <summary>
+    /// ガスを補給する
+    /// </summary>
+    public void ChargeGas() { gas = gasMax; }
 }

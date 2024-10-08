@@ -22,7 +22,9 @@ public class DistanceText : MonoBehaviour
         // 入力チェック
         Vector3 inputMove = InputManager.GetInstance().GetInputMove();
         if (inputMove == Vector3.zero)
+        {
             return;
+        }
 
         // 距離の更新
         distance -= inputMove.x * Time.deltaTime;

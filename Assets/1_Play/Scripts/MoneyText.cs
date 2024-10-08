@@ -40,12 +40,17 @@ public class MoneyText : MonoBehaviour
     }
 
     /// <summary>
+    /// ‹àŠz‚ğæ“¾‚·‚é
+    /// </summary>
+    public int GetMoney() { return money; }
+
+    /// <summary>
     /// ‚¨‹à‚ğİ’è‚·‚é
     /// </summary>
     /// <param name="_money">İ’èŒã‚Ì‚¨‹à</param>
     public void SetMoneyText(int _money)
     {
-        money = _money;
+        money += _money;
         text.text = money.ToString("D5");
     }
 

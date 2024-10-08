@@ -17,12 +17,14 @@ public class MoveBackground : MonoBehaviour
     void Update()
     {
         // 入力チェック
-        Vector3 inputMove = InputManager.GetInstance().GetInputMove();
-        if (inputMove == Vector3.zero)
+        float inputMove = InputManager.GetInstance().GetInputMove().x;
+        if (inputMove == 0)
+        {
             return;
+        }
 
         // 背景を左へ移動
-        transform.position += 5 * inputMove.normalized * -Time.deltaTime;
+        transform.position += new Vector3(5 * inputMove * -Time.deltaTime, 0);
 
         // 画像の同じ部分に戻し、ずっと続いているように錯覚させる
         if (transform.position.x < POSITION_END)

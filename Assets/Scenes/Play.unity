@@ -879,6 +879,7 @@ MonoBehaviour:
   - {fileID: 87196575, guid: cc570b0bb276c55448fe30c3704d0e2f, type: 3}
   imgMeter: {fileID: 1133057987}
   gasMax: 100
+  gas: 0
 --- !u!50 &1217289599
 Rigidbody2D:
   serializedVersion: 4
@@ -1011,7 +1012,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296768141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1139,8 +1140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4881f9af977aeb4aa082b078980f1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customer: {fileID: 8021498835647715272, guid: b75ded1206f2a274cafc8264968a6804, type: 3}
-  gasStation: {fileID: 2728225481406746788, guid: 13a56551922ce494d9e4393b8552d93e, type: 3}
+  customer: {fileID: 4942375244534480615, guid: b75ded1206f2a274cafc8264968a6804, type: 3}
+  gasStation: {fileID: 414245628596422259, guid: 13a56551922ce494d9e4393b8552d93e, type: 3}
 --- !u!1 &1866745970
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_SCENE.PLAY:
                 //‹t‘–ãŒÀ
-                if (DistanceText.distance >= 999)
+                if (DistanceText.distance <= -999)
                 {
 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;//ƒQ[ƒ€ƒvƒŒƒCI—¹
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
                 }
                 // Œ‹‰Ê‰æ–Ê‚Ö
-                else if(PlayerComponet.gas <= 0)
+                else if(PlayerComponet.GetInstance().gas <= 0)
                 {
                     NextScene(STATE_SCENE.RESULT);
                 }
