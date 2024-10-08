@@ -1140,8 +1140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4881f9af977aeb4aa082b078980f1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customer: {fileID: 4942375244534480615, guid: b75ded1206f2a274cafc8264968a6804, type: 3}
-  gasStation: {fileID: 414245628596422259, guid: 13a56551922ce494d9e4393b8552d93e, type: 3}
+  customer: {fileID: 7501056498127309751, guid: b75ded1206f2a274cafc8264968a6804, type: 3}
+  gasStation: {fileID: 1086234010856210417, guid: 13a56551922ce494d9e4393b8552d93e, type: 3}
 --- !u!1 &1866745970
 GameObject:
   m_ObjectHideFlags: 0

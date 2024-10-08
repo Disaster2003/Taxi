@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class GasStationManAction : MonoBehaviour
 {
+    private int price;
+    [SerializeField] Text txtPrice;
     private bool isHitCheck;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(10, -4);
+        price = PlayerPrefs.GetInt("Days") * 10;
+        txtPrice.text = price.ToString() + "‰~";
         isHitCheck = false;
     }
 
@@ -25,12 +31,12 @@ public class GasStationManAction : MonoBehaviour
 
         if (isHitCheck)
         {
-            if (MoneyText.GetInstance().GetMoney() >= 20)
+            if (MoneyText.GetInstance().GetMoney() >= price)
             {
                 if (inputMove.y < 0)
                 {
                     // ƒKƒX‚Ì•â‹‹
-                    MoneyText.GetInstance().SetMoneyText(-20);
+                    MoneyText.GetInstance().SetMoneyText(-price);
                     PlayerComponet.GetInstance().ChargeGas();
                     Destroy(gameObject);
                 }

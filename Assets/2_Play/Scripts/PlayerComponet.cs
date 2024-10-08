@@ -103,6 +103,11 @@ public class PlayerComponet : MonoBehaviour
     }
 
     /// <summary>
+    /// ƒKƒX‚Ì—Ê‚ğæ“¾‚·‚é
+    /// </summary>
+    public float GetGas() { return gas; }
+
+    /// <summary>
     /// ƒKƒX‚ğ•â‹‹‚·‚é
     /// </summary>
     public void ChargeGas() { gas = gasMax; }

@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     private enum STATE_SCENE
     {
         TITLE = 0,  // タイトル画面
-        PLAY = 1,   // プレイ画面
-        RESULT = 2, // 結果画面
+        REPORT = 1, // 日数画面
+        PLAY = 2,   // プレイ画面
+        RESULT = 3, // 結果画面
     }
     private STATE_SCENE state_scene;
+
+    private float sceneInterval = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,9 @@ public class GameManager : MonoBehaviour
         //Escが押された時
         if (Input.GetKey(KeyCode.Escape))
         {
+            // 値の初期化
+            PlayerPrefs.SetInt("Days", 0);
+            PlayerPrefs.SetInt("Money", 0);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
 #else
@@ -44,10 +50,26 @@ public class GameManager : MonoBehaviour
             case STATE_SCENE.TITLE:
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    NextScene(STATE_SCENE.PLAY);
+                    sceneInterval = 3;
+                    NextScene(STATE_SCENE.REPORT);
                 }
                 break;
+            case STATE_SCENE.REPORT:
+                // いざ、プレイ
+                if (sceneInterval <= 0)
+                {
+                    sceneInterval = 1;
+                    NextScene(STATE_SCENE.PLAY);
+                }
+                sceneInterval += -Time.deltaTime;
+                break;
             case STATE_SCENE.PLAY:
+                if(sceneInterval > 0)
+                {
+                    sceneInterval += -Time.deltaTime;
+                    return;
+                }
+
                 //逆走上限
                 if (DistanceText.distance <= -999)
                 {
@@ -58,12 +80,12 @@ public class GameManager : MonoBehaviour
 #endif
                 }
                 // 次の日へ
-                if (DistanceText.distance <= 0)
+                else if (DistanceText.distance <= 0)
                 {
-
+                    NextScene(STATE_SCENE.REPORT);
                 }
                 // 結果画面へ
-                else if(PlayerComponet.GetInstance().gas <= 0)
+                else if(PlayerComponet.GetInstance().GetGas() <= 0)
                 {
                     NextScene(STATE_SCENE.RESULT);
                 }

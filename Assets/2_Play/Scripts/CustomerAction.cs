@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerAction : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class CustomerAction : MonoBehaviour
     private Dictionary<KIND_OF_CHARACTER, Sprite[]> objectSprite;
 
     [SerializeField] GameObject coin;
+
+    [SerializeField] Text txtDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +66,7 @@ public class CustomerAction : MonoBehaviour
                 distanceClear = Random.Range(40, 50);
                 break;
         }
+        txtDistance.text = distanceClear.ToString() + "mêÊÇ‹Ç≈";
         int whichGender = Random.Range(0, 2);
         GetComponent<SpriteRenderer>().sprite = objectSprite[(KIND_OF_CHARACTER)whatKind][whichGender];
     }
@@ -87,6 +91,7 @@ public class CustomerAction : MonoBehaviour
                     {
                         stateCustomer = STATE_CUTOMER.RIDE;
                         GetComponent<SpriteRenderer>().color = Color.clear;
+                        Destroy(transform.GetChild(0).gameObject);
                         distanceTmp = DistanceText.distance;
                     }
                 }
